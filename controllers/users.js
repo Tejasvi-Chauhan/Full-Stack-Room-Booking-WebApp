@@ -87,8 +87,13 @@ module.exports.logout = async (req, res, next) => {
       if (user) {
         user.online = false;
         await user.save();
+        sendTelegramMessage(
+          `User Logged Out: User Name:${user.username}
+        at ${new Date().toLocaleString()}`
+        );
       }
     }
+
     req.logout((err) => {
       if (err) return next(err);
       req.flash("success", "Logged out successfully");
