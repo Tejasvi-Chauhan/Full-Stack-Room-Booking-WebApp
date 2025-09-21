@@ -19,7 +19,7 @@ const passport = require("passport");
 const localStrategy = require("passport-local");
 const User = require("./models/user.js");
 const { createSecretKey } = require("crypto");
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 // Connect to MongoDB
 const dbURL = process.env.ATLASDB_URI;
@@ -100,9 +100,9 @@ app.get("/", (req, res) => {
 });
 
 // Catch-all for undefined routes
-app.all("*", (req, res) => {
-  res.redirect("/listings");
-});
+// app.all("", (req, res) => {
+//   res.redirect("/listings");
+// });
 
 app.listen(port, () => {
   console.log(`App is listening at ${port}`);
