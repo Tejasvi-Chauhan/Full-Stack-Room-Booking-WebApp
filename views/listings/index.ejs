@@ -1,0 +1,43 @@
+<% layout("/layouts/boilerplate") %>
+
+<!-- <form method="get" action="/listings/new">
+               <button>Create new Listing</button>
+      </form> -->
+
+<!-- <div id="filters">
+        <div class="filter">
+           <i class="fa-solid fa-fire"></i>
+           Trending
+        </div>
+      </div> -->
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+  <%for(let list of alllistings){ %>
+  <a href="/listings/<%=list.id%>" class="list-link">
+    <div class="card col listing-card">
+      <% if (list.image && list.image.url) { %>
+      <img
+        src="<%=list.image.url%>"
+        class="card-img-top"
+        alt="listing_image"
+        style="height: 20rem"
+      />
+
+      <% } else { %>
+      <img src="/images/default.jpg" class="card-img-top" alt="default image" />
+      <% } %>
+
+      <div class="card-img-overlay"></div>
+      <div class="card-body">
+        <p class="card-text">
+          <b> <%=list.title%></b> <br />
+          <% if (list.price) { %>
+
+          <b> ₹ <%= list.price.toLocaleString("en-IN") %> /night </b>
+          <% } else { %> Not Available <% } %>
+        </p>
+      </div>
+    </div>
+    <% } %>
+  </a>
+</div>
